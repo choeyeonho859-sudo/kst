@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: kst-website
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app --workers 2 --threads 4 --timeout 60
+    healthCheckPath: /health
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DISCORD_WEBHOOK_URL
+        sync: false
