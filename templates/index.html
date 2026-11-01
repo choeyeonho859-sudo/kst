@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow"><span class="live-dot"></span> INDEPENDENT ELECTRONIC MUSIC COLLECTIVE</div>
+  <h1>Sound without<br><span>boundaries.</span></h1>
+  <p class="hero-copy">A home for artists, producers, and new sounds.<br>Made to move beyond the ordinary.</p>
+  <div class="hero-actions"><a class="button button-light" href="{{ url_for('artists_page') }}">Explore artists <span>↗</span></a><a class="button button-outline" href="{{ url_for('submit') }}">Submit your music</a></div>
+  <div class="hero-index"><span>EST. 2026</span><span>KOREA · ONLINE WORLDWIDE</span><span>01 / 03</span></div>
+  <div class="hero-orbit" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">KST<span>.</span></div></div>
+</section>
+<section class="intro section-pad">
+  <div class="section-label">01 / WHO WE ARE</div>
+  <div><h2>Built around the<br>love of <em>sound.</em></h2><p>KST connects electronic music creators through collaboration, feedback, and a shared drive to create something memorable. From trance and DnB to the sounds yet to be named, every track starts somewhere.</p></div>
+</section>
+<section class="artist-section section-pad">
+  <div class="section-top"><div><div class="section-label">02 / THE COLLECTIVE</div><h2>Meet the artists<span class="brand-dot">.</span></h2></div><a class="text-link" href="{{ url_for('artists_page') }}">All artists ↗</a></div>
+  <div class="artist-grid">
+    {% for artist in artists %}
+    <article class="artist-card"><div class="artist-number">0{{ loop.index }}</div><div class="artist-symbol">{{ artist.name[0]|upper }}</div><h3>{{ artist.name }}</h3><p>{{ artist.role }}</p><span class="tag">{{ artist.tag }}</span></article>
+    {% endfor %}
+  </div>
+</section>
+<section class="submit-banner section-pad"><div><div class="section-label">03 / YOUR NEXT TRACK</div><h2>Make it heard.</h2><p>Send us your music and let the next chapter begin.</p></div><a class="button button-light" href="{{ url_for('submit') }}">Submit music <span>↗</span></a></section>
+{% endblock %}

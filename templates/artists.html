@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Artists — KST{% endblock %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow"><span class="live-dot"></span> THE COLLECTIVE</div><h1>Artists<span class="brand-dot">.</span></h1><p>Different identities. One shared frequency.</p></section>
+<section class="artist-grid artist-page-grid section-pad">
+{% for artist in artists %}
+<article class="artist-card"><div class="artist-number">0{{ loop.index }}</div><div class="artist-symbol">{{ artist.name[0]|upper }}</div><h3>{{ artist.name }}</h3><p>{{ artist.role }}</p><span class="tag">{{ artist.tag }}</span></article>
+{% endfor %}
+</section>
+<div class="notice section-pad"><strong>Want to be listed?</strong><span>Submit a track and introduce your sound to KST.</span><a class="text-link" href="{{ url_for('submit') }}">Send a track ↗</a></div>
+{% endblock %}

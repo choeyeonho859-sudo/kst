@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Submission Received — KST{% endblock %}
+{% block content %}
+<section class="success-page"><div class="success-icon">✓</div><div class="eyebrow">SUBMISSION RECEIVED</div><h1>Your sound<br>is in the queue<span class="brand-dot">.</span></h1><p>Thanks for sending your track to KST. The team can review it from the submission dashboard.</p><a class="button button-light" href="{{ url_for('home') }}">Back to home ↗</a></section>
+{% endblock %}

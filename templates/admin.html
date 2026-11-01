@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Submissions — KST Admin{% endblock %}
+{% block content %}
+<section class="admin-page section-pad"><div class="section-top"><div><div class="section-label">PRIVATE DASHBOARD</div><h1>Submissions<span class="brand-dot">.</span></h1></div><form method="post" action="{{ url_for('admin_logout') }}"><button class="button button-outline" type="submit">Log out</button></form></div>
+{% if submissions %}
+<div class="table-wrap"><table><thead><tr><th>Track</th><th>Artist</th><th>Submitted (UTC)</th><th>Status</th><th>Update</th></tr></thead><tbody>
+{% for s in submissions %}<tr><td><a class="text-link" href="{{ s['track_link'] }}" target="_blank" rel="noopener noreferrer">{{ s['track_title'] }}</a><small class="table-message">{{ s['message'] }}</small></td><td>{{ s['artist_name'] }}</td><td>{{ s['created_at'][:19].replace('T', ' ') }}</td><td><span class="tag">{{ s['status'] }}</span></td><td><form class="status-form" method="post" action="{{ url_for('update_status', submission_id=s['id']) }}"><select name="status">{% for status in ['New','Reviewing','Accepted','Declined'] %}<option {% if s['status'] == status %}selected{% endif %}>{{ status }}</option>{% endfor %}</select><button type="submit">Save</button></form></td></tr>{% endfor %}
+</tbody></table></div>
+{% else %}<div class="empty-state">No submissions yet.</div>{% endif %}</section>
+{% endblock %}

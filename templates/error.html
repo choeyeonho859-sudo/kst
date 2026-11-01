@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} — KST{% endblock %}
+{% block content %}<section class="success-page"><div class="eyebrow">ERROR {{ code }}</div><h1>{{ message }}</h1><a class="button button-light" href="{{ url_for('home') }}">Back home ↗</a></section>{% endblock %}

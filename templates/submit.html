@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Submit Music — KST{% endblock %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow"><span class="live-dot"></span> MUSIC SUBMISSIONS</div><h1>Send us your<br><span>sound.</span></h1><p>Share a track for the KST team to review.</p></section>
+<section class="form-layout section-pad">
+  <div class="form-note"><div class="section-label">BEFORE YOU SUBMIT</div><h2>Keep it original.</h2><p>Send a playable link and include any context that helps us understand your track. Submission does not guarantee acceptance or official artist status.</p><div class="form-meta"><span>01</span><span>Artist details</span></div><div class="form-meta"><span>02</span><span>Track link</span></div><div class="form-meta"><span>03</span><span>Team review</span></div></div>
+  <form class="submission-form" method="post" action="{{ url_for('submit') }}">
+    <label>Artist name <span>*</span><input name="artist_name" maxlength="80" required placeholder="Your artist name"></label>
+    <label>Track title <span>*</span><input name="track_title" maxlength="120" required placeholder="Name of your track"></label>
+    <label>Track link <span>*</span><input name="track_link" type="url" maxlength="500" required placeholder="https://..."></label>
+    <label>Message <small>OPTIONAL</small><textarea name="message" maxlength="1500" rows="5" placeholder="Genre, production notes, or anything else..."></textarea></label>
+    <button class="button button-light submit-button" type="submit">Send submission <span>↗</span></button>
+    <p class="privacy-note">Please only submit links and information you have permission to share.</p>
+  </form>
+</section>
+{% endblock %}
