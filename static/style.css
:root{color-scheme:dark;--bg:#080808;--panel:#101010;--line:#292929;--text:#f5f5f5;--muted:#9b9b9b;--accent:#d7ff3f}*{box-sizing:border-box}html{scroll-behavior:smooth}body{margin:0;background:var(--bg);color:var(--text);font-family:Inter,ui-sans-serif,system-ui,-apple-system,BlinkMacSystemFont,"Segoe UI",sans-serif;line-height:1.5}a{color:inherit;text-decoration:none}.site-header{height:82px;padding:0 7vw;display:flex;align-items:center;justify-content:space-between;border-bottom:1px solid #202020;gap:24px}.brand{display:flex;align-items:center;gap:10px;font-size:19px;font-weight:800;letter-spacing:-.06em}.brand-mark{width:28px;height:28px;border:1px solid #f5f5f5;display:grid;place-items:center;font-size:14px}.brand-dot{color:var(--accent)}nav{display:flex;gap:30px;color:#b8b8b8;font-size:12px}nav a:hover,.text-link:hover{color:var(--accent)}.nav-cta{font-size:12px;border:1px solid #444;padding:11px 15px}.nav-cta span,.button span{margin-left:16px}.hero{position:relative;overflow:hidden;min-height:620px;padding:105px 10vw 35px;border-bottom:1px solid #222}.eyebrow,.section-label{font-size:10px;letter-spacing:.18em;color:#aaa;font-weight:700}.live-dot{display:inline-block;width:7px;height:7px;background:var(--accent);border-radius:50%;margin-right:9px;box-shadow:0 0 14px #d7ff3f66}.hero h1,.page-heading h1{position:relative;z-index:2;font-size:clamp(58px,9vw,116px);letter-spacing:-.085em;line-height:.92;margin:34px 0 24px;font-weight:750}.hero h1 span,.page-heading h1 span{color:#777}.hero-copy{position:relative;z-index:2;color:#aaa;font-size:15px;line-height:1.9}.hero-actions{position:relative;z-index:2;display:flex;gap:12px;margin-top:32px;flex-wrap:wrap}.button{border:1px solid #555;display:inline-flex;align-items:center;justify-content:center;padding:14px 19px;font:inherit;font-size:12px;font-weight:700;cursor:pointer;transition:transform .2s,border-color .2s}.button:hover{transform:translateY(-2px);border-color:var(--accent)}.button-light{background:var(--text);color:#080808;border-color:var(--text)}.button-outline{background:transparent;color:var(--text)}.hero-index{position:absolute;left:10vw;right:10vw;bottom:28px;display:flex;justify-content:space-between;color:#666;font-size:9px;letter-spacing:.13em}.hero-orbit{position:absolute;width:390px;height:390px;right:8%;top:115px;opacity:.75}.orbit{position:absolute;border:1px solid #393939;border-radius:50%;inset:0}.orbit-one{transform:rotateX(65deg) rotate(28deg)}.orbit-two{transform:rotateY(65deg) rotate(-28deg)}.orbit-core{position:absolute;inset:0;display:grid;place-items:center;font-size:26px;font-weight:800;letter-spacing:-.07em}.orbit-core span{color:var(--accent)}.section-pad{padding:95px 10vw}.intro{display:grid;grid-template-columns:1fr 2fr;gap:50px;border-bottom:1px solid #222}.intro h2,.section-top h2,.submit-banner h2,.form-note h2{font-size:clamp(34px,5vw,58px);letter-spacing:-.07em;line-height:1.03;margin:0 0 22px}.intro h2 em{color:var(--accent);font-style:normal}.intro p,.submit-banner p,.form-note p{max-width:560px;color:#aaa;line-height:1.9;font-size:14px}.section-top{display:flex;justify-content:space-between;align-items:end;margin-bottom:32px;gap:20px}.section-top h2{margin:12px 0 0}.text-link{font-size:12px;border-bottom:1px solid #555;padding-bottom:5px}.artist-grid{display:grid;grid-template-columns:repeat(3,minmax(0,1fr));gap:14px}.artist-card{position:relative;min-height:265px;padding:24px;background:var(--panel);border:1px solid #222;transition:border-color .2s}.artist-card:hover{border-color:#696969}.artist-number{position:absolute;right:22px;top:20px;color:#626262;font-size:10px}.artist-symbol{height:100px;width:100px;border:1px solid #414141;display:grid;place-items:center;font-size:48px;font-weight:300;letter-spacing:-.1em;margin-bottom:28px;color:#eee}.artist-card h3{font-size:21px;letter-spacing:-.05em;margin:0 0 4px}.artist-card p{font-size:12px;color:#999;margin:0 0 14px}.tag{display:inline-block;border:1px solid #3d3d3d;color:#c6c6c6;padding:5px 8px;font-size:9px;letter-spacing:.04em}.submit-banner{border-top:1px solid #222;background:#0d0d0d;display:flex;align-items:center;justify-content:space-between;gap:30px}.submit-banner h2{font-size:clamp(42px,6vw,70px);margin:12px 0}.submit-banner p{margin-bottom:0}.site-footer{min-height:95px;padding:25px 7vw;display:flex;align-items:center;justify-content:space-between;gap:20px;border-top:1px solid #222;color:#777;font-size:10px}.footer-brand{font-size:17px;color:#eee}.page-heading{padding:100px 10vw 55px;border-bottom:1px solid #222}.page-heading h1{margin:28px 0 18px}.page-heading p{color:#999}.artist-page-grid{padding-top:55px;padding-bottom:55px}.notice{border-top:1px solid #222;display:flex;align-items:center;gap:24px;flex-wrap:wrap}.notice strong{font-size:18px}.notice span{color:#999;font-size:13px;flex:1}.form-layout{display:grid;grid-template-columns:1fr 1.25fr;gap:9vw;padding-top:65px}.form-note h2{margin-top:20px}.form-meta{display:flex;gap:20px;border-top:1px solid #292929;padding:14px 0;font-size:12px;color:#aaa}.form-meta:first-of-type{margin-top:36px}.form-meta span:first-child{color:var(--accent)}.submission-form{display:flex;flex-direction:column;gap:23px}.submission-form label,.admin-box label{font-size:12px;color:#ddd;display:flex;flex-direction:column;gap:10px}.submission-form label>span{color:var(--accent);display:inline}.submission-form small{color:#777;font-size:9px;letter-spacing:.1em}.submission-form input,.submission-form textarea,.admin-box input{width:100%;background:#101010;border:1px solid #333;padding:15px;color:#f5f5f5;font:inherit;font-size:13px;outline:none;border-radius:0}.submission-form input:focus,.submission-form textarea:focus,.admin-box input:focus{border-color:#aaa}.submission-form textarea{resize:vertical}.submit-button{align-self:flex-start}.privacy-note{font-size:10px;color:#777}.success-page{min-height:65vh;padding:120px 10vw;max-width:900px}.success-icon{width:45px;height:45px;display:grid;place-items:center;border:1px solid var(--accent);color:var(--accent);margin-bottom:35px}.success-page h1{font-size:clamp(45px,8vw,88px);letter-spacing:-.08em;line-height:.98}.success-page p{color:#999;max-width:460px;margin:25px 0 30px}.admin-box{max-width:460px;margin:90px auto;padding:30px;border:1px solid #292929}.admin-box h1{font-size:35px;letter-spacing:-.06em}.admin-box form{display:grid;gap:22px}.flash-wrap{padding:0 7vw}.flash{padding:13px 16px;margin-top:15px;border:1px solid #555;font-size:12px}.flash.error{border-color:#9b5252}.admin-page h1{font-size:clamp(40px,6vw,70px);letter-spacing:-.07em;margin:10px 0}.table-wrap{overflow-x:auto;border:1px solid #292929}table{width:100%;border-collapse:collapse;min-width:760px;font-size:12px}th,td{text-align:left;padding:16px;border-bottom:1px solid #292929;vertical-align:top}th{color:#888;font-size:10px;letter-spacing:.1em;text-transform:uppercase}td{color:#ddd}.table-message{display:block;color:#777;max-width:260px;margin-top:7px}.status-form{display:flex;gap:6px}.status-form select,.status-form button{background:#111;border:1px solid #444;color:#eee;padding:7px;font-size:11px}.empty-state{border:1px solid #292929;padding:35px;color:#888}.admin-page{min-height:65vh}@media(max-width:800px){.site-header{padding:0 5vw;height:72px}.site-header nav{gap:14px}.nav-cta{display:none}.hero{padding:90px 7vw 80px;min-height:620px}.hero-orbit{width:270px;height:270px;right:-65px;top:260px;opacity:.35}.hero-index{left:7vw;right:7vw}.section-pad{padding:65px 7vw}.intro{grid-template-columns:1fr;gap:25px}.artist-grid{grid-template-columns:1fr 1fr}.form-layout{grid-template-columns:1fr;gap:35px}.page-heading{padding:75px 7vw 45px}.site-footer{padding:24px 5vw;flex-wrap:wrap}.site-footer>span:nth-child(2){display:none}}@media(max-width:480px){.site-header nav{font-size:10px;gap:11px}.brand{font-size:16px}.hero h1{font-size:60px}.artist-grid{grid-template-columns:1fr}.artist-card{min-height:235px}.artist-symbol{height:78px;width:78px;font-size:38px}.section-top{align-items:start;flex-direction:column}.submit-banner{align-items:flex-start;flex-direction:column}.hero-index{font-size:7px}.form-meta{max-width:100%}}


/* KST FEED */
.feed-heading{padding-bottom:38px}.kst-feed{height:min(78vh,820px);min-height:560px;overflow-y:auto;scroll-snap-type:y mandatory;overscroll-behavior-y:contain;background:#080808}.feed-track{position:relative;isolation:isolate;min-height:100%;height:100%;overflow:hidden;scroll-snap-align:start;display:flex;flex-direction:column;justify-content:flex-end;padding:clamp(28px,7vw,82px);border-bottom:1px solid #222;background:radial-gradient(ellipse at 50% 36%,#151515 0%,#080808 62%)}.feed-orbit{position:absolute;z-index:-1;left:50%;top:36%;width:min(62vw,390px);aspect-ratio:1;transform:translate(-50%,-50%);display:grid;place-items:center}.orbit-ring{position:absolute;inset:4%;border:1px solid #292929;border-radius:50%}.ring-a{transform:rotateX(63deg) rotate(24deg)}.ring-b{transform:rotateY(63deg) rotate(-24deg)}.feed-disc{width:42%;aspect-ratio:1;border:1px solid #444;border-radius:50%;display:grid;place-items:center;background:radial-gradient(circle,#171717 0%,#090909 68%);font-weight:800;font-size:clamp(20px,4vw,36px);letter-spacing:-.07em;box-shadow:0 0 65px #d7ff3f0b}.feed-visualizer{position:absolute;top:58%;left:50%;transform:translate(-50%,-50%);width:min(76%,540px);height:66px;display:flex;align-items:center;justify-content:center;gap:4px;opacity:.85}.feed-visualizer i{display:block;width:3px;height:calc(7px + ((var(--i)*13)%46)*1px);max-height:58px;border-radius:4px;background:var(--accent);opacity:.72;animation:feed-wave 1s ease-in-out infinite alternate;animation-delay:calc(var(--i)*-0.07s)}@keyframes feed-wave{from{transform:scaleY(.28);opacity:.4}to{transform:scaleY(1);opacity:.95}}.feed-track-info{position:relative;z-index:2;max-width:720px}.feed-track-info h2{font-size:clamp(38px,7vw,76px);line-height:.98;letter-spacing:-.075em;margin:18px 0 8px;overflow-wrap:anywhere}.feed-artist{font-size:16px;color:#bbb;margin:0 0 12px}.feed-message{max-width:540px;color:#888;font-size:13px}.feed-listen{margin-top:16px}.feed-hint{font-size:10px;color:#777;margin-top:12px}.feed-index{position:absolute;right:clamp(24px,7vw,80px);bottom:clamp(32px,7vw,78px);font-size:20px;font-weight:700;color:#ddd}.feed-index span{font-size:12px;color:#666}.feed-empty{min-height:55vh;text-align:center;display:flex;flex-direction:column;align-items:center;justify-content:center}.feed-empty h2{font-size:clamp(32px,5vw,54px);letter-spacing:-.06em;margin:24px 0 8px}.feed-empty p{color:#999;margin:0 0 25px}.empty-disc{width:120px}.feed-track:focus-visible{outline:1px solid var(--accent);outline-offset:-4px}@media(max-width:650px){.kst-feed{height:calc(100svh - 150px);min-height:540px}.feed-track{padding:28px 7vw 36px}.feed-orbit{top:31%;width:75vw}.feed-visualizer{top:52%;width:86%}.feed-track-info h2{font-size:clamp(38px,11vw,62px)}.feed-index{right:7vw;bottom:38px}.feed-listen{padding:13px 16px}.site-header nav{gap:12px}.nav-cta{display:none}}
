@@ -1,0 +1,19 @@
+{{% extends "base.html" %}}
+{{% block title %}}KST Feed — Music Discovery{{% endblock %}}
+{{% block content %}}
+<section class="page-heading feed-heading"><div class="eyebrow"><span class="live-dot"></span> KST / MUSIC DISCOVERY</div><h1>KST Feed<span class="brand-dot">.</span></h1><p>Approved tracks. One sound at a time. Scroll to explore.</p></section>
+{% if tracks %}
+<section class="kst-feed" aria-label="Approved music feed">
+  {% for track in tracks %}
+  <article class="feed-track" tabindex="0">
+    <div class="feed-orbit"><span class="orbit-ring ring-a"></span><span class="orbit-ring ring-b"></span><div class="feed-disc"><span>KST<span class="brand-dot">.</span></span></div></div>
+    <div class="feed-visualizer" aria-hidden="true">{% for n in range(31) %}<i style="--i:{{ n }}"></i>{% endfor %}</div>
+    <div class="feed-track-info"><div class="eyebrow">APPROVED TRACK · {{ '%02d'|format(loop.index) }}</div><h2>{{ track['track_title'] }}</h2><p class="feed-artist">by {{ track['artist_name'] }}</p>{% if track['message'] %}<p class="feed-message">{{ track['message'] }}</p>{% endif %}<a class="button button-light feed-listen" href="{{ track['track_link'] }}" target="_blank" rel="noopener noreferrer">Listen to track <span>↗</span></a><p class="feed-hint">Opens the original music platform</p></div>
+    <div class="feed-index">{{ '%02d'|format(loop.index) }} <span>/ {{ '%02d'|format(tracks|length) }}</span></div>
+  </article>
+  {% endfor %}
+</section>
+{% else %}
+<section class="feed-empty section-pad"><div class="feed-disc empty-disc">KST<span class="brand-dot">.</span></div><h2>The feed is warming up.</h2><p>Approved tracks will appear here after the KST team accepts them.</p><a class="button button-outline" href="{{ url_for('submit') }}">Submit your music ↗</a></section>
+{% endif %}
+{{% endblock %}}
