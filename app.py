@@ -72,6 +72,16 @@ def artists_page():
     return render_template("artists.html", artists=artists)
 
 
+@app.get("/feed")
+def feed():
+    with db() as conn:
+        tracks = conn.execute(
+            "SELECT id, artist_name, track_title, track_link, message, created_at "
+            "FROM submissions WHERE status = 'Accepted' ORDER BY id DESC"
+        ).fetchall()
+    return render_template("feed.html", tracks=tracks)
+
+
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     if request.method == "POST":
